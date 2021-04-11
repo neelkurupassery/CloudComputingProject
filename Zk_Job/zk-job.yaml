@@ -20,7 +20,7 @@ spec:                     # This is the specification where we can even put the 
           image: 129.114.27.15:5000/zookeeper_server   # this is the image in registry accessible
           # from all our workers
           imagePullPolicy: Always  # This forces the node to pull the image
-          command: ["systemctl"]
-          args: ["start zookeeper"]  # arguments to run.
+          command: ["tail"]
+          args: ["-f", "/dev/null"]  # arguments to run.
       restartPolicy: Never  # we ask Kubernetes not to restart
 ...
