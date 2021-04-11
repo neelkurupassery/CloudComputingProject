@@ -21,7 +21,6 @@ spec:                     # This is the specification where we can even put the 
       containers:
       - name: zookeeper       # Used by DNS
         image: 129.114.27.15:5000/zookeeper_d   # this is the image in registry accessible
-          # from all our workers
           imagePullPolicy: Always  # This forces the node to pull the image
           command: [ "systemctl" ]
           args: [ "start zookeeper" ]  # arguments to run.
