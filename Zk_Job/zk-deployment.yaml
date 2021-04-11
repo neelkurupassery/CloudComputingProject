@@ -25,5 +25,5 @@ spec:                     # This is the specification where we can even put the 
         command: [ "systemctl" ]
         args: [ "start zookeeper" ]  # arguments to run.
         ports:            # Since nginx is a web server, we let it listen on port 80 in the container
-        - containerPort: 2181
+        - containerPort: 2181 #
       restartPolicy: Never  # we ask Kubernetes not to restart
