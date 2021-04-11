@@ -15,7 +15,7 @@ spec:                     # This is the specification where we can even put the 
       nodeSelector:  # this shows how you force k8s to schedule the pod on a specified node
         kubernetes.io/hostname: kubemaster
       containers:
-        - name: zookeeperServer       # this is going to be used for DNS name
+        - name: zookeeper-server       # this is going to be used for DNS name
           # Change the IP address to where you are running this
           image: 129.114.27.15:5000/zookeeper_server   # this is the image in registry accessible
           # from all our workers
