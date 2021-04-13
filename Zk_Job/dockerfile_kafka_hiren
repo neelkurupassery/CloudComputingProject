@@ -29,6 +29,6 @@ ENV KAFKA_VERSION=$kafka_version \
 
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 RUN mkdir -p /opt/kafka
-RUN curl "https://downloads.apache.org/kafka/${SCALA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -o /opt/kafka/kafka_${SCALA_VERSION}_${KAFKA_VERSION}.tgz"
+RUN curl "https:/downloads.apache.org/kafka/${SCALA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -o /opt/kafka/kafka_${SCALA_VERSION}_${KAFKA_VERSION}.tgz"
 Run ls /opt/kafka/kafka_${SCALA_VERSION}_${KAFKA_VERSION}.tgz
 RUN tar xvzf /opt/kafka/kafka_${SCALA_VERSION}_${KAFKA_VERSION}.tgz  -C /opt/kafka
