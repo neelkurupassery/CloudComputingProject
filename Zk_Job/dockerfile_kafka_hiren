@@ -30,6 +30,6 @@ ENV KAFKA_VERSION=$kafka_version \
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 RUN mkdir -p /opt/kafka
 Run echo "https://downloads.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -o /opt/kafka/kafka.tgz"
-RUN wget https://downloads.apache.org/kafka/https://downloads.apache.org/kafka/2.7.0/kafka_2.13-2.7.0.tgz -o /opt/kafka/kafka.tgz
+RUN curl https://downloads.apache.org/kafka/2.7.0/kafka_2.13-2.7.0.tgz -o /opt/kafka/kafka.tgz
 Run ls -l /opt/kafka/kafka.tgz
 RUN tar xvf /opt/kafka/kafka.tgz  -C /opt/kafka
