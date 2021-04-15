@@ -14,8 +14,7 @@ FROM ubuntu:latest
 ENV TZ=US/NewYork
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get -y update && apt-get install -y tzdata
-RUN apt-get -y update && apt-get install -y curl
-# RUN apt-get -y update && apt-get install -y net-tools python3 gcc python3-dev python3-pip curl default-jdk
+RUN apt-get -y update && apt-get install -y net-tools python3 gcc python3-dev python3-pip curl default-jdk
 
 
 ARG kafka_version=2.7.0
@@ -27,6 +26,20 @@ ENV KAFKA_VERSION=$kafka_version \
     KAFKA_HOME=/opt/kafka \
     GLIBC_VERSION=$glibc_version
 
+# Kafka environment
+KAFKA_BROKER_ID=1
+KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://129.114.27.15:9092
+KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT,SSL:SSL,SASL_PLAINTEXT:SASL_PLAINTEXT,SASL_SSL:SASL_SSL
+KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+
+#Zookeeper environment
+ZOOKEEPER_CLIENT_PORT=2181 \
+ZOOKEEPER_TICK_TIME=2000 \
+ZOOKEEPER_SYNC_LIMIT=2
+ZOOKEEPER_SERVER_ID=129.114.27.15:2888:3888
+
 ENV PATH=${PATH}:${KAFKA_HOME}/bin
 RUN mkdir -p /opt/kafka
 Run echo "https://downloads.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz -o /opt/kafka/kafka.tgz"
@@ -34,3 +47,4 @@ Run echo "https://downloads.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERS
 RUN curl "https://downloads.apache.org/kafka/${KAFKA_VERSION}/kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz" -o /opt/kafka/"kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 Run ls -l /opt/kafka/"kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 RUN tar xvf /opt/kafka/"kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"  -C /opt/kafka
+COPY F:/workspace/CloudComputingProject/Zk_Job/server.properties /opt/kafka/config/server.properties
