@@ -20,7 +20,7 @@ spec:                     # This is the specification where we can even put the 
     spec:                 # actual specification
       containers:
       - name: kafka       # Used by DNS
-        image: 129.114.27.15:5000/kafka   # this is the image in registry accessible
+        image: 129.114.27.15:5000/kafka_broker   # this is the image in registry accessible
         imagePullPolicy: Always  # This forces the node to pull the image
         command: [ "systemctl" ]
         args: [ "start zookeeper" ]  # arguments to run.
